@@ -36,28 +36,63 @@ struct Arrow: InsettableShape{
     }
 }
 
+struct ColorCyclingRectangle : View{
+    var amount = 0.0
+    var steps = 100
+    
+    var body: some View {
+        ZStack{
+            ForEach(0..<steps){ value in
+                Rectangle()
+                    .inset(by: Double(value))
+                    .strokeBorder(color(for: value, brightness: 1), lineWidth: 2)
+            }
+        }
+    }
+    
+    func color(for value: Int, brightness: Double) -> Color{
+        var targetHue = Double(value) / Double(steps) + amount
+        
+        if targetHue > 1 {
+            targetHue -= 1
+        }
+        
+        return Color(hue: targetHue, saturation: 1, brightness: brightness)
+    }
+}
+
 struct ContentView: View {
     @State private var lineWidth = 1.0
     
+    @State private var colorCycle = 0.0
+    
     var body: some View {
         VStack{
-            Spacer()
             VStack{
-                Arrow()
-                    .stroke(.blue, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
-                    .animation(.easeInOut(duration: 2), value: lineWidth)
+                VStack{
+                    Arrow()
+                        .stroke(.blue, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
+                        .animation(.easeInOut(duration: 2), value: lineWidth)
+                        .padding()
+                }
+                .frame(width: 150, height: 250)
+                .border(.gray)
+                
+                
+                Text("Line width: \(lineWidth, specifier: "%.00f")")
+                Slider(value: $lineWidth, in: 1...20)
                     .padding()
             }
-            .frame(width: 300, height: 300)
-            .border(.gray)
+            .padding()
             
-            Spacer()
-            
-            Text("Line width: \(lineWidth, specifier: "%.00f")")
-            Slider(value: $lineWidth, in: 1...20)
-                .padding()
+            VStack{
+                ColorCyclingRectangle(amount: colorCycle)
+                    .frame(width: 300, height: 300)
+                
+                Slider(value: $colorCycle)
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
