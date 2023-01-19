@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HabitSheetView: View {
+    @ObservedObject var activity: Activity
+    
     @State private var habitName = ""
     @State private var habitDescription = ""
     @State private var habitStartDate = Date.now
@@ -37,6 +39,8 @@ struct HabitSheetView: View {
             .toolbar {
                 Button("Add"){
                     // Add new habit to list
+                    let newHabit = Habit(name: habitName, description: habitDescription, startDate: habitStartDate, dayCount: habitDayCount)
+                    activity.habits.append(newHabit)
                     dismiss()
                 }
             }
@@ -46,6 +50,6 @@ struct HabitSheetView: View {
 
 struct HabitSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        HabitSheetView()
+        HabitSheetView(activity: Activity())
     }
 }

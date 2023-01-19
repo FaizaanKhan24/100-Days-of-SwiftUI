@@ -27,15 +27,13 @@ struct ContentView: View {
                 .navigationTitle("Habit Tracker")
                 .toolbar {
                     Button(){
-                        activities.habits.append(Habit(name: "Gym Test", description: "To work out", startDate: Date.now, dayCount: 7))
-                        
-                        isShowAddHabit.toggle()
+                        isShowAddHabit = true
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
                 .sheet(isPresented: $isShowAddHabit){
-                    HabitSheetView()
+                    HabitSheetView(activity: activities)
                 }
             }
         }
