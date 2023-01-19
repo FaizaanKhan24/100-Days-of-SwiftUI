@@ -33,6 +33,7 @@ struct HabitSheetView: View {
                 
                 Section("Habit Count"){
                     TextField("Optional", value: $habitDayCount, format: .number)
+                        .keyboardType(.numberPad)
                 }
             }
             .navigationTitle("Add new Habit")
