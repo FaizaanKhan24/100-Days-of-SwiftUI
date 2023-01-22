@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct HabitView: View {
-    @State private var selectedHabit: Habit = Habit(name: "Gym", description: "Work Out everyday", startDate: Date.now, dayCount: 7)
+//    @State private var selectedHabit: Habit = Habit(name: "Gym", description: "Work Out everyday", startDate: Date.now, dayCount: 7)
+    
+    @ObservedObject var activity: Activity
+    @State var selectedHabit: Habit
+    @State private var newCount = 0
+    
+    @State private var showAlert = false
     
     var body: some View {
         ZStack(alignment: .leading){
@@ -37,21 +43,37 @@ struct HabitView: View {
                     }
                     
                     Section("Habit Streak"){
-                        Stepper("Habit Count", value: $selectedHabit.dayCount)
+                        Stepper("Habit Count", value: $newCount)
                         HStack{
                             Spacer()
-                            Text("\(selectedHabit.dayCount)")
+                            Text("\(newCount)")
                                 .font(.largeTitle)
                             Spacer()
                         }
                     }
                 }
             }
+            .onAppear{
+                newCount = selectedHabit.dayCount
+            }
+            .alert("Success!", isPresented: $showAlert){
+                Button("Ok"){
+                    // Dismiss
+                }
+            } message: {
+                Text("Update successful")
+            }
             .navigationTitle(selectedHabit.name)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{
                 Button("Update"){
                     // Do something
+                    let itemIndex = activity.habits.firstIndex(of:selectedHabit) ?? -1
+                    selectedHabit.dayCount = newCount
+                    if(itemIndex > -1){
+                        activity.habits[itemIndex] = selectedHabit
+                        showAlert = true
+                    }
                 }
             }
         }
@@ -59,7 +81,9 @@ struct HabitView: View {
 }
 
 struct HabitView_Previews: PreviewProvider {
+    static var testHabit = Habit(name: "Gym", description: "Work Out everyday", startDate: Date.now, dayCount: 7)
+    
     static var previews: some View {
-        HabitView()
+        HabitView(activity: Activity(), selectedHabit: testHabit)
     }
 }

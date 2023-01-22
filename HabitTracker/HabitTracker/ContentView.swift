@@ -18,7 +18,7 @@ struct ContentView: View {
                 List{
                     ForEach(activities.habits){ habitItem in
                         NavigationLink{
-                            HabitView()
+                            HabitView(activity: activities, selectedHabit: habitItem)
                         } label: {
                             HabitItemView(habit: habitItem)
                         }
