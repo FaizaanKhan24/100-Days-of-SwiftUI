@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CheckoutView: View {
-    @StateObject var order: Order
+    @ObservedObject var newOrder: NewOrder
     
     @State private var confirmationMessage = ""
     @State private var showingConfirmation = false
@@ -28,7 +28,7 @@ struct CheckoutView: View {
                 }
                 .frame(height: 233)
 
-                Text("Your total is \(order.cost, format: .currency(code: "USD"))")
+                Text("Your total is \(newOrder.order.cost, format: .currency(code: "USD"))")
                     .font(.title)
 
                 Button("Place Order"){
@@ -54,7 +54,7 @@ struct CheckoutView: View {
     }
     
     func placeOrder() async {
-        guard let encoded = try? JSONEncoder().encode(order) else{
+        guard let encoded = try? JSONEncoder().encode(newOrder.order) else{
             print("Failed to print order")
             return
         }
@@ -62,12 +62,12 @@ struct CheckoutView: View {
         let url = URL(string: "https://reqres.in/api/cupcakes")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
+//        request.httpMethod = "POST"
         
         do{
             let (data, _) = try await URLSession.shared.upload(for: request, from: encoded)
-            let decodedOrder = try JSONDecoder().decode(Order.self, from: data)
-            confirmationMessage = "Your order for \(decodedOrder.quantity)x \(Order.types[decodedOrder.type].lowercased()) cupcakes is on its way!"
+            let decodedOrder = try JSONDecoder().decode(OrderItems.self, from: data)
+            confirmationMessage = "Your order for \(decodedOrder.quantity)x \(OrderItems.types[decodedOrder.type].lowercased()) cupcakes is on its way!"
             showingConfirmation = true
         } catch {
             informativeMessage = "Sorry, there seems to be no internet"
@@ -80,6 +80,6 @@ struct CheckoutView: View {
 
 struct CheckoutView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckoutView(order: Order())
+        CheckoutView(newOrder: NewOrder(order: OrderItems()))
     }
 }

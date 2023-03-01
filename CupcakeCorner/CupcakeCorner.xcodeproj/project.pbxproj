@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		896A62BA29AF948800D3BA54 /* NewOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896A62B929AF948800D3BA54 /* NewOrder.swift */; };
 		89C7FF2D29AA471F008EFE2B /* CupcakeCornerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C7FF2C29AA471F008EFE2B /* CupcakeCornerApp.swift */; };
 		89C7FF2F29AA471F008EFE2B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C7FF2E29AA471F008EFE2B /* ContentView.swift */; };
 		89C7FF3129AA4721008EFE2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89C7FF3029AA4721008EFE2B /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		896A62B929AF948800D3BA54 /* NewOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrder.swift; sourceTree = "<group>"; };
 		89C7FF2929AA471F008EFE2B /* CupcakeCorner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CupcakeCorner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C7FF2C29AA471F008EFE2B /* CupcakeCornerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupcakeCornerApp.swift; sourceTree = "<group>"; };
 		89C7FF2E29AA471F008EFE2B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				89C7FF3A29ACEDA4008EFE2B /* Order.swift */,
 				89C7FF3029AA4721008EFE2B /* Assets.xcassets */,
 				89C7FF3229AA4721008EFE2B /* Preview Content */,
+				896A62B929AF948800D3BA54 /* NewOrder.swift */,
 			);
 			path = CupcakeCorner;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89C7FF3B29ACEDA4008EFE2B /* Order.swift in Sources */,
+				896A62BA29AF948800D3BA54 /* NewOrder.swift in Sources */,
 				89C7FF3D29ACEF06008EFE2B /* AddressView.swift in Sources */,
 				89C7FF3F29ACEF97008EFE2B /* CheckoutView.swift in Sources */,
 				89C7FF2F29AA471F008EFE2B /* ContentView.swift in Sources */,
