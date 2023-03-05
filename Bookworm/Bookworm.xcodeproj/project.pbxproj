@@ -16,6 +16,7 @@
 		899F83E029B37F2100005890 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899F83DF29B37F2100005890 /* AddBookView.swift */; };
 		899F83E229B3864900005890 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899F83E129B3864900005890 /* RatingView.swift */; };
 		899F83E429B387FD00005890 /* EmojiRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899F83E329B387FD00005890 /* EmojiRatingView.swift */; };
+		89BD305B29B4D0540009B86A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BD305A29B4D0540009B86A /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		899F83DF29B37F2100005890 /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 		899F83E129B3864900005890 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		899F83E329B387FD00005890 /* EmojiRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRatingView.swift; sourceTree = "<group>"; };
+		89BD305A29B4D0540009B86A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				899F83DA29B379C800005890 /* DataController.swift */,
 				899F83DC29B37A8E00005890 /* Bookworm.xcdatamodeld */,
 				8910BC2C29B0E3F60075F02A /* Assets.xcassets */,
+				89BD305A29B4D0540009B86A /* DetailView.swift */,
 				8910BC2E29B0E3F60075F02A /* Preview Content */,
 			);
 			path = Bookworm;
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8910BC2B29B0E3F50075F02A /* ContentView.swift in Sources */,
+				89BD305B29B4D0540009B86A /* DetailView.swift in Sources */,
 				899F83DE29B37A8E00005890 /* Bookworm.xcdatamodeld in Sources */,
 				899F83E429B387FD00005890 /* EmojiRatingView.swift in Sources */,
 				899F83DB29B379C800005890 /* DataController.swift in Sources */,
