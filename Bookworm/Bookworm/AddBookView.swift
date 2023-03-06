@@ -49,14 +49,22 @@ struct AddBookView: View {
                         newBook.rating = Int16(rating)
                         newBook.genre = genre
                         newBook.review = review
+                        newBook.date = Date.now
 
                         try? moc.save()
                         dismiss()
                     }
                 }
+                .disabled(validateForm())
             }
             .navigationTitle("Add book")
         }
+    }
+    
+    //    Challenge 1
+    func validateForm() -> Bool {
+        let isFormValid = ( title.trimmingCharacters(in: .whitespaces).isEmpty || author.trimmingCharacters(in: .whitespaces).isEmpty || genre.isEmpty  )
+        return isFormValid
     }
 }
 
