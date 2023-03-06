@@ -36,6 +36,11 @@ struct DetailView: View {
                 .font(.title)
                 .foregroundColor(.secondary)
 
+            // Challenge 3
+            Text(book.date ?? Date.now, style: .date)
+                .font(.caption)
+                .foregroundColor(.secondary)
+            
             Text(book.review ?? "No review")
                 .padding()
 
