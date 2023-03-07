@@ -20,9 +20,9 @@ struct FilteredList<T: NSManagedObject, Content: View> : View {
         }
     }
     
-    //Challenge 1, Challenge 2
-    init(filterKey: String, filterValue: String, filterPredicate: FilterPredicate, @ViewBuilder content: @escaping (T) -> Content) {
-        _fetchRequest = FetchRequest<T>(sortDescriptors: [], predicate: NSPredicate(format: "%K \(filterPredicate.getPredicate()) %@", filterKey, filterValue))
+    //Challenge 1, Challenge 2, Challenge 3
+    init(filterKey: String, filterValue: String, filterPredicate: FilterPredicate, sortDescriptions: [NSSortDescriptor] = [], @ViewBuilder content: @escaping (T) -> Content) {
+        _fetchRequest = FetchRequest<T>(sortDescriptors: sortDescriptions, predicate: NSPredicate(format: "%K \(filterPredicate.getPredicate()) %@", filterKey, filterValue))
         self.content = content
     }
 }

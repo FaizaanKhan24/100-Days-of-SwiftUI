@@ -25,11 +25,13 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     @State private var lastNameFilter = "A"
     
-    
+    let sortOrder = [
+        NSSortDescriptor(key: "lastName", ascending: false)
+    ]
     
     var body: some View {
         VStack {
-            FilteredList(filterKey: "lastName", filterValue: lastNameFilter, filterPredicate: FilterPredicate.beginWith) { (singer: Singer) in
+            FilteredList(filterKey: "lastName", filterValue: lastNameFilter, filterPredicate: FilterPredicate.beginWith, sortDescriptions: sortOrder) { (singer: Singer) in
                 Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
             }
 
