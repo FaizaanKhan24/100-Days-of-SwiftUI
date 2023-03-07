@@ -8,14 +8,28 @@
 import CoreData
 import SwiftUI
 
+enum FilterPredicate{
+    case beginWith, endswith
+    
+    func getPredicate() -> String{
+        switch self {
+        case .beginWith:
+            return "BEGINSWITH"
+        case .endswith:
+            return "ENDSWITH"
+        }
+    }
+}
+
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     @State private var lastNameFilter = "A"
     
     
+    
     var body: some View {
         VStack {
-            FilteredList(filterKey: "lastName", filterValue: lastNameFilter, filterPredicate: "BEGINSWITH") { (singer: Singer) in
+            FilteredList(filterKey: "lastName", filterValue: lastNameFilter, filterPredicate: FilterPredicate.beginWith) { (singer: Singer) in
                 Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
             }
 
