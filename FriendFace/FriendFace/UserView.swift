@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserView: View {
-    @State var user: User
+    @State var user: CacheUser
     
     var body: some View {
         VStack{
@@ -24,7 +24,7 @@ struct UserView: View {
                         Text("Company")
                             .bold()
                         Spacer()
-                        Text(user.company)
+                        Text(user.wrappedCompany)
                     }
                 }
                 
@@ -33,22 +33,22 @@ struct UserView: View {
                         Text("Email")
                             .bold()
                         Spacer()
-                        Text(user.email)
+                        Text(user.wrappedEmail)
                     }
                     HStack{
                         Text("Address")
                             .bold()
                         Spacer()
-                        Text(user.address)
+                        Text(user.wrappedAddress)
                     }
                 }
                 
                 Section("About") {
-                    Text(user.about)
+                    Text(user.wrappedAbout)
                 }
                 
                 Section("Tags") {
-                    ForEach(user.tags, id: \.self){ tag in
+                    ForEach(user.wrappedTags.components(separatedBy: ","), id: \.self){ tag in
                         Text(tag)
                             .foregroundColor(.blue)
                             .bold()
@@ -59,17 +59,17 @@ struct UserView: View {
                 }
                 
                 Section("Friends"){
-                    ForEach(user.friends, id: \.id){ friend in
-                        Text(friend.name)
+                    ForEach(user.wrappedFriends, id: \.id){ friend in
+                        Text(friend.wrappedName)
                     }
                 }
                 
                 Section("Registered"){
-                    Text(user.registered, style: .date)
+                    Text(user.wrappedRegistered, style: .date)
                 }
             }
         }
-        .navigationTitle(user.name)
+        .navigationTitle(user.wrappedName)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
