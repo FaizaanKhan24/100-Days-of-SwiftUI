@@ -80,12 +80,16 @@ struct ContentView: View {
         }
         .confirmationDialog("Select a filter", isPresented: $showingFilterSheet) {
             Button("Crystallize") { setFilter(CIFilter.crystallize()) }
-            Button("Edges") { setFilter(CIFilter.edges()) }
+//            Button("Edges") { setFilter(CIFilter.edges()) }
             Button("Gaussian Blur") { setFilter(CIFilter.gaussianBlur()) }
             Button("Pixellate") { setFilter(CIFilter.pixellate()) }
             Button("Sepia Tone") { setFilter(CIFilter.sepiaTone()) }
             Button("Unsharp Mask") { setFilter(CIFilter.unsharpMask()) }
             Button("Vignette") { setFilter(CIFilter.vignette()) }
+            // Challenge 3
+            Button("Bloom") { setFilter(CIFilter.bloom()) }
+            Button("Hue Adjust") { setFilter(CIFilter.hueAdjust()) }
+            Button("Mono chrome") { setFilter(CIFilter.colorMonochrome()) }
             Button("Cancel", role: .cancel) { }
         }
     }
