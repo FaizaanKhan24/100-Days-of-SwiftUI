@@ -14,8 +14,11 @@ extension ContentView {
         @Published var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 50, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
         @Published private(set) var locations: [Location]
         @Published var selectedPlace: Location?
-        
         @Published var isUnlocked = false
+        
+        @Published var showAlert = false
+        @Published var alertMessage = ""
+        @Published var alertTitle = ""
         
         let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
         
@@ -65,7 +68,11 @@ extension ContentView {
                             self.isUnlocked = true
                         }
                     } else {
-                        // error
+                        Task { @MainActor in
+                            self.showAlert = true
+                            self.alertTitle = "Error!"
+                            self.alertMessage = "Authentication failed. Please try again"
+                        }
                     }
                 }
             } else {

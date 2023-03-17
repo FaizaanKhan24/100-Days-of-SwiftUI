@@ -14,6 +14,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             if viewModel.isUnlocked{
+//            if true {
                 Map(coordinateRegion: $viewModel.mapRegion, annotationItems: viewModel.locations) { location in
                     MapAnnotation(coordinate: location.coordinate){
                         VStack {
@@ -46,14 +47,15 @@ struct ContentView: View {
                         Button {
                             viewModel.addLocation()
                         } label: {
+                            // Challenge 1
                             Image(systemName: "plus")
+                                .padding()
+                                .background(.black.opacity(0.75))
+                                .foregroundColor(.white)
+                                .font(.title)
+                                .clipShape(Circle())
+                                .padding(.trailing)
                         }
-                        .padding()
-                        .background(.black.opacity(0.75))
-                        .foregroundColor(.white)
-                        .font(.title)
-                        .clipShape(Circle())
-                        .padding(.trailing)
                     }
                 }
             } else {
@@ -70,6 +72,12 @@ struct ContentView: View {
             EditView(location: place) { newLocation in
                 viewModel.update(location: newLocation)
             }
+        }
+        // Challenge 2
+        .alert(viewModel.alertTitle,isPresented: $viewModel.showAlert){
+            Button("Ok") { }
+        } message: {
+            Text(viewModel.alertMessage)
         }
     }
 }
