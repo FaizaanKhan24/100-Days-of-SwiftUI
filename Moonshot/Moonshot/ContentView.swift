@@ -41,6 +41,8 @@ struct ContentView: View {
                                 MissionListView(mission: mission)
                             }
                         }
+                        .accessibilityElement()
+                        .accessibilityLabel(mission.displayName)
                     }
                 }
                 .padding([.horizontal, .bottom])

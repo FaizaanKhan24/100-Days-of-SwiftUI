@@ -58,6 +58,9 @@ struct MissionView: View {
                                 } label: {
                                     CrewLabelView(crewMember: crewMember)
                                 }
+                                .accessibilityElement()
+                                .accessibilityLabel("\(crewMember.astronaut.name)")
+                                .accessibilityHint(crewMember.role)
                             }
                         }
                     }
